@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+        function bank() {
+            var money = window.prompt('input');
+            var str = "";
+
+            for (var i = 0; i < money.length; i++) {
+                str += transfer(money.charAt(i));
+            }
+            // console.log(str);
+            if (money.length <= 1) {
+                //1元  壹元
+                console.log(str + "元");
+            } else if (money.length == 2 && money.charAt(1) != 0) {
+                // 21元 如：贰拾壹元
+                console.log(str[0] + "拾" + str[1] + '元');
+            }else if (money.length == 2 && money.charAt(1) == 0) {
+                // 20元 如：贰拾元
+                console.log(str[0] + "拾元");
+                // 百位数 3位数
+            } else if (money.length == 3 && money.charAt(1) != 0 && money.charAt(2) != 0) {
+                // 381元 如：叁佰捌拾壹元
+                console.log(str[0] + '佰' + str[1] + "拾" + str[2] + "元");
+            }else if(money.length == 3 && money.charAt(1) ==  0) {
+                // 301元 十位上有零 去除”拾“
+                console.log(str[0] + '佰' + str[1] + str[2] + "元")
+                // 以下为仟位 4位数 
+            }else if (money.length == 3 && money.charAt(1) != 0 && money.charAt(2) == 0) {
+                // 381元 如：叁佰捌拾壹元
+                console.log(str[0] + '佰' + str[1] + "拾元");
+                // 以下千位 4位数
+            }else if (money.length == 4 && money.charAt(1) != 0 && money.charAt(2) != 0  && money.charAt(3) != 0) {
+                // 1234元 壹仟贰佰叁拾肆元
+                console.log(str[0] + "仟" + str[1] + '佰' + str[2] + "拾" + str[3] + "元");
+                // 以下为百位数有零的case
+            } else if (money.length == 4 && money.charAt(1) == 0 && money.charAt(2) != 0  && money.charAt(3) != 0) {
+                // 1023元 壹仟零贰拾叁元
+                console.log(str[0] + "仟" + str[1] + str[2] + "拾" + str[3] + "元");
+                // 以下为百位和十位数都有零的case
+            } else if (money.length == 4 && money.charAt(1) == 0 && money.charAt(2) == 0  && money.charAt(3) != 0) {
+                // 1002元 壹仟零贰元
+                console.log(str[0] + "仟" + str[1] + str[3] + "元");
+                // 以下为十位数有零的case
+            }else if(money.length == 4 &&  money.charAt(1) != 0 && money.charAt(2) == 0  && money.charAt(3) != 0) {
+                // 1105元 壹仟一百零伍元
+                console.log(str[0] + "仟" + str[1] + "佰"+ str[2] + str[3] + "元");
+                // 以下为个位数有零的case
+            }else if (money.length == 4 && money.charAt(1) != 0 && money.charAt(2) != 0  && money.charAt(3) == 0) {
+                // 3450元 叁仟肆佰伍拾元
+                console.log(str[0] + "仟" + str[1] + "佰" + str[2] + "拾元");
+                // 以下为万位 5位数
+            }else if (money.length == 4 && money.charAt(1) == 0 && money.charAt(2) == 0  && money.charAt(3) == 0) {
+                // 2000元 贰仟元
+                console.log(str[0] + "仟元");
+                // 以下为万位 5位数
+            }else if (money.length == 4 && money.charAt(1) == 0 && money.charAt(2) != 0  && money.charAt(3) == 0) {
+                // 3450元 叁仟肆佰伍拾元
+                console.log(str[0] + "仟" + str[1] + str[2] + "拾元");
+                // 以下为万位 5位数
+            }
+            
+            
+            
+            
+            
+            else if(money.length == 5 && money.charAt(1) != 0 && money.charAt(2) != 0 && money.charAt(3) != 0 && money.charAt(4) != 0) {
+                // 12345元  壹萬贰仟零叁佰肆拾伍元 
+                console.log(str[0] + "萬" + str[1] + "仟零" + str[2] + '佰' + str[3] +"拾" + str[4] + "元");
+                // 以下为千位数有零的case
+            }else if(money.length == 5 && money.charAt(1) == 0 && money.charAt(2) != 0 && money.charAt(3) != 0 && money.charAt(4) != 0) {
+                // 10234元  壹萬零贰佰叁拾肆元
+                console.log(str[0] + "萬" + str[1]  + str[2] + "佰" + str[3] + "拾" + str[4] + "元");
+                // 以下为百位数有零的case
+            }else if(money.length == 5 && money.charAt(2) == 0 && money.charAt(1) != 0 && money.charAt(3) != 0 && money.charAt(4) != 0) {
+                // 11025元 壹萬壹仟零贰拾伍元
+                console.log(str[0] + "萬" + str[1] + "仟" + str[2] + str[3] +"拾" + str[4] + "元");
+                // 以下为十位数有零case
+            }else if(money.length == 5 && money.charAt(2) != 0 && money.charAt(1) != 0 && money.charAt(3) == 0 && money.charAt(4) != 0) {
+                // 例如：12304 壹萬贰仟叁佰零肆元
+                console.log(str[0] + "萬" + str[1] + "仟" + str[2] + "佰" + str[3] + str[4] + "元")
+                // 以下是千位数百位数十位数均为零case
+            }else if(money.length == 5 && money.charAt(1) == 0 && money.charAt(2) == 0 && money.charAt(3) == 0 && money.charAt(4) != 0) {
+                // 例如：10003元 壹萬零叁元
+                console.log(str[0] + "萬" + str[1] + str[4] + "元")
+                // 以下是千位数和百位数均有零的情况
+            }else if(money.length == 5 && money.charAt(1) == 0 && money.charAt(2) == 0 && money.charAt(3) != 0 && money.charAt(4) != 0) {
+                // 例如：10023元 
+                console.log(str[0] + "萬" + str[1] + str[3] +"拾" + str[4] + "元");
+                // 以下是千位数和十位数有零case
+            }else if(money.length == 5 && money.charAt(1) == 0 && money.charAt(2) != 0 && money.charAt(3) == 0 && money.charAt(4) != 0) {
+                // 例如：10203元 
+                console.log(str[0] + "萬" + str[1] + str[2] + "佰" + str[3] + str[4] + "元");
+                // 以下是个位数有零case
+            }else if(money.length == 5 && money.charAt(1) != 0 && money.charAt(2) != 0 && money.charAt(3) != 0 && money.charAt(4) == 0) {
+                // 例如：12340 元 
+                console.log(str[0] + "萬" + str[1] + "仟" + str[2] + "佰" + str[3] + "拾元");
+                // 以下是千位数百位数个位数均为零的case
+            }else if(money.length == 5 && money.charAt(1) == 0 && money.charAt(2) == 0 && money.charAt(3) == 0 && money.charAt(4) == 0) {
+                // 例如：10023元 
+                console.log(str[0] + "萬元");
+                // 以下是千位数和十位数有零case
+            }
+
+
+
+        }
+        //  佰、仟
+        function transfer(target) {
+            switch (target) {
+                case "1":
+                    return "壹";
+                case "2":
+                    return "贰";
+                case "3":
+                    return "叁";
+                case "0":
+                    return "零";
+                case "4":
+                    return "肆"
+                case "5":
+                    return "伍"
+                case "6":
+                    return "陆"
+                case "7":
+                    return "柒"
+                case "8":
+                    return "捌"
+                case "9":
+                    return "玖"
+            }
+        }
+
+
+</script>
+
+
+
+
+    
+</body>
+</html>
